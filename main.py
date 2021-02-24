@@ -2,7 +2,7 @@ import tools
 import constants
 from pprint import pprint
 
-from ildar import gather_name_link_of_institutes, parse_ivmiit
+from ildar import gather_name_link_of_institutes, parse_ivmiit, parse_geogr
 
 
 def main():
@@ -11,7 +11,8 @@ def main():
     print(f'институты: {institutes}')
     print(f'количество институтов: {len(institutes)}')
 
-    parsing_dictionary = {'Институт вычислительной математики и информационных технологий': parse_ivmiit}
+    parsing_dictionary = {'Институт вычислительной математики и информационных технологий': parse_ivmiit,
+                          'Институт экологии и природопользования': parse_geogr}
 
     data = {}
     for name, link in institutes:

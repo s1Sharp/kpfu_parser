@@ -81,3 +81,34 @@ def parse_ivmiit(link):
         result[name] = gather_name_link_of_employees(stuff_link)
 
     return result
+
+
+def gather_name_link_of_cathedras_of_geogr(link):
+    html = tools.get_html(link)
+    soup = BeautifulSoup(html, 'lxml')
+
+    div = soup.find('div', class_='visit_link')
+
+    links = div.find_all('a')
+
+    cathedras = []
+    for a in links:
+        if a.text.startswith('Кафедра'):
+            cathedras.append((a.text, a.get('href')))
+    return cathedras
+
+
+def parse_geogr(link):
+    struct_button_link = get_link_from_menu_list_left(link, 'Структура')
+
+    cathedras = gather_name_link_of_cathedras_of_geogr(struct_button_link)
+    result = {}
+
+    for name, link in cathedras:
+        stuff_link = get_link_from_menu_list_left(link, 'Состав')
+        result[name] = stuff_link
+
+    for name, stuff_link in result.items():
+        result[name] = gather_name_link_of_employees(stuff_link)
+
+    return result
