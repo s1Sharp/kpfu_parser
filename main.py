@@ -5,8 +5,6 @@ from pprint import pprint
 from ildar import gather_name_link_of_institutes, parse_ivmiit, parse_geogr
 
 
-# test pull request
-
 def main():
     html = tools.get_html(constants.initial_url)
     institutes = gather_name_link_of_institutes(html)
