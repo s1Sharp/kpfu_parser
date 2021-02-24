@@ -6,7 +6,8 @@ import requests
 from selenium import webdriver
 
 import constants
-from proxy import PROXY
+
+# from proxy import PROXY
 
 A_BORDER_SEC = 10
 B_BORDER_SEC = 100
@@ -39,14 +40,14 @@ def get_html_with_engine(url):
     return html
 
 
-def get_html_confidently(url):
-    while True:
-        try:
-            response = requests.get(url, headers=get_random_header(), proxies=PROXY.get_next_proxy())
-            return response.text
-        except:
-            print(f'{url} did not respond...')
-        time.sleep(random.uniform(A_BORDER_SEC, B_BORDER_SEC))
+# def get_html_confidently(url):
+#     while True:
+#         try:
+#             response = requests.get(url, headers=get_random_header(), proxies=PROXY.get_next_proxy())
+#             return response.text
+#         except:
+#             print(f'{url} did not respond...')
+#         time.sleep(random.uniform(A_BORDER_SEC, B_BORDER_SEC))
 
 
 def clear_console():

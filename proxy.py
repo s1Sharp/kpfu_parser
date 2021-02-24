@@ -43,5 +43,4 @@ class Proxy:
         self.proxies = get_proxies()
         self.size = len(self.proxies)
 
-
-PROXY = Proxy()
+# PROXY = Proxy()
