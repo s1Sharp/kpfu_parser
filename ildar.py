@@ -27,7 +27,7 @@ def get_link_from_menu_list_left(link, button_name: str):
             return a.get('href')
 
 
-def gather_name_link_of_cathedras(link):
+def gather_name_link_of_cathedras_of_ivmiit(link):
     html = tools.get_html(link)
     soup = BeautifulSoup(html, 'lxml')
 
@@ -70,7 +70,7 @@ def gather_name_link_of_employees(link):
 def parse_ivmiit(link):
     about_button_link = get_link_from_menu_list_left(link, 'Об институте')
 
-    cathedras = gather_name_link_of_cathedras(about_button_link)
+    cathedras = gather_name_link_of_cathedras_of_ivmiit(about_button_link)
     result = {}
 
     for name, link in cathedras:
