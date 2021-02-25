@@ -3,7 +3,7 @@ import constants
 from pprint import pprint
 
 from ildar import gather_name_link_of_institutes, parse_ivmiit, parse_geogr
-
+from vasia import parse_higher_school_buisness
 
 def main():
     html = tools.get_html(constants.initial_url)
@@ -26,7 +26,7 @@ def main():
         'Институт фундаментальной медицины и биологии': None,
         'Инженерный институт': None,
         'Институт международных отношений': None,
-        'Высшая школа бизнеса': None,
+        'Высшая школа бизнеса': parse_higher_school_buisness,
         'Институт социально-философских наук и массовых коммуникаций': None,
         'Институт управления, экономики и финансов': None,
         'Высшая школа государственного и муниципального управления': None,
