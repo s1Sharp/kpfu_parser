@@ -3,11 +3,12 @@ from bs4 import BeautifulSoup
 import tools
 
 
-def gather_name_link_of_institutes(html):
+def gather_name_link_of_institutes_and_branches(html):
     soup = BeautifulSoup(html, 'lxml')
 
-    ul = soup.find('ul', class_='menu_list')
-    lis = ul.find_all('li', class_='li_spec')
+    ul = soup.find_all('ul', class_='menu_list')[:2]
+    lis = ul[0].find_all('li', class_='li_spec')
+    lis += ul[1].find_all('li', class_='li_spec')
 
     institutes = [(li.find('a').text, li.find('a').get('href')) for li in lis]
 
@@ -110,5 +111,15 @@ def parse_geogr(link):
 
     for name, stuff_link in result.items():
         result[name] = gather_name_link_of_employees(stuff_link)
+
+    return result
+
+
+def parse_physical(link):
+    struct_button_link = get_link_from_menu_list_left(link, 'Структура')
+
+    stuff_link = get_link_from_menu_list_left(struct_button_link, 'Сотрудники')
+
+    result = {'Основная кафедра': gather_name_link_of_employees(stuff_link)}
 
     return result
