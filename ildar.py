@@ -112,3 +112,13 @@ def parse_geogr(link):
         result[name] = gather_name_link_of_employees(stuff_link)
 
     return result
+
+
+def parse_physical(link):
+    struct_button_link = get_link_from_menu_list_left(link, 'Структура')
+
+    stuff_link = get_link_from_menu_list_left(struct_button_link, 'Сотрудники')
+
+    result = {'Основная кафедра': gather_name_link_of_employees(stuff_link)}
+
+    return result

@@ -2,7 +2,7 @@ import tools
 import constants
 from pprint import pprint
 
-from ildar import gather_name_link_of_institutes, parse_ivmiit, parse_geogr
+from ildar import gather_name_link_of_institutes, parse_ivmiit, parse_geogr, parse_physical
 from vasia import parse_higher_school_buisness
 from maks import parse_ipot
 from rama import parse_engineer
@@ -23,7 +23,7 @@ def main():
         'Институт вычислительной математики и информационных технологий': parse_ivmiit,
         'Институт филологии и межкультурной коммуникации': None,
         'Институт психологии и образования': None,
-        'Общеуниверситетская кафедра физического воспитания и спорта': None,
+        'Общеуниверситетская кафедра физического воспитания и спорта': parse_physical,
         'Институт информационных технологий и интеллектуальных систем': None,
         'Институт фундаментальной медицины и биологии': None,
         'Инженерный институт': parse_engineer,
