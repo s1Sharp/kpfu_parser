@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 
 import tools
 
+
 def get_info_from_html(link):
     html = tools.get_html(link)
     soup = BeautifulSoup(html, 'lxml')
@@ -9,10 +10,11 @@ def get_info_from_html(link):
     div = soup.find('div', class_='visit_link')
     p = div.find_all('p')
 
-    result=[]
+    result = []
     for current in p:
         result.append(current.text)
     return result
+
 
 def gather_name_link_of_employees(link):
     html = tools.get_html(link)
@@ -34,6 +36,7 @@ def gather_name_link_of_employees(link):
 
     return employees
 
+
 def get_link_from_menu_list_left(link, button_name: str):
     html = tools.get_html(link)
     soup = BeautifulSoup(html, 'lxml')
@@ -46,8 +49,9 @@ def get_link_from_menu_list_left(link, button_name: str):
         if a.text == button_name:
             return a.get('href')
 
+
 def get_links_from_menu_list_left(link, button_name: str):
-    #get many links, not once
+    # get many links, not once
     html = tools.get_html(link)
     soup = BeautifulSoup(html, 'lxml')
 
@@ -60,6 +64,7 @@ def get_links_from_menu_list_left(link, button_name: str):
         if a.text.startswith == button_name:
             links_res.append(a.get('href'))
     return links_res
+
 
 def gather_name_link_of_cathedras_of_ipot(link):
     html = tools.get_html(link)
@@ -76,19 +81,17 @@ def gather_name_link_of_cathedras_of_ipot(link):
     return cathedras
 
 
-
-def parce_ipot(link):
+def parse_ipot(link):
     struct_links = gather_name_link_of_cathedras_of_ipot(link)
 
     result = {}
 
     for name, link in struct_links:
         stuff_link = get_link_from_menu_list_left(link, 'Сотрудники')
-        if stuff_link != None:
+        if stuff_link:
             result[name] = stuff_link
 
     for name, stuff_link in result.items():
         result[name] = get_info_from_html(stuff_link)
 
     return result
-
