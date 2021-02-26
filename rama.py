@@ -42,7 +42,6 @@ def gather_name_link_of_employees_engineer(link):
 
     return employees
 
-
 def parse_engineer(link):
     struct_button_link = get_link_from_menu_list_left_engineer(link,'Структура')
     cathedras = gather_name_link_of_cathedras_of_engineer(struct_button_link)
