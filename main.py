@@ -4,16 +4,21 @@ from pprint import pprint
 
 from ildar import gather_name_link_of_institutes, parse_ivmiit, parse_geogr
 from vasia import parse_higher_school_buisness
+
 from maks import parce_ipot
+from rama import parse_engineer,parse_engineer2
 
 def main():
     html = tools.get_html(constants.initial_url)
     institutes = gather_name_link_of_institutes(html)
     print(f'институты: {institutes}')
     print(f'количество институтов: {len(institutes)}')
-
     parsing_dictionary = {
+
         'Институт экологии и природопользования':parse_geogr,
+
+        'Институт экологии и природопользования': parse_geogr,
+
         'Институт геологии и нефтегазовых технологий': None,
         'Институт математики и механики им. Н.И. Лобачевского': None,
         'Институт физики': None,
@@ -25,7 +30,7 @@ def main():
         'Общеуниверситетская кафедра физического воспитания и спорта': None,
         'Институт информационных технологий и интеллектуальных систем': None,
         'Институт фундаментальной медицины и биологии': None,
-        'Инженерный институт': None,
+        'Инженерный институт': parse_engineer,
         'Институт международных отношений': None,
         'Высшая школа бизнеса': parse_higher_school_buisness,
         'Институт социально-философских наук и массовых коммуникаций': None,
@@ -39,7 +44,14 @@ def main():
         'Центр непрерывного повышения профессионального мастерства педагогических работников': None,
         'Медико-санитарная часть ФГАОУ ВО КФУ': None,
         'Центр цифровых трансформаций': None,
+
         'Институт передовых образовательных технологий': parce_ipot}
+
+        'Институт передовых образовательных технологий': None
+
+
+    }
+
 
     data = {}
     for name, link in institutes:
