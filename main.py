@@ -6,6 +6,7 @@ from ildar import gather_name_link_of_institutes_and_branches, parse_ivmiit, par
 from vasia import parse_higher_school_buisness
 from maks import parse_ipot
 from rama import parse_engineer
+from ilsiyar import parse_phys, parse_law, parse_chem
 
 
 def main():
@@ -17,9 +18,9 @@ def main():
         'Институт экологии и природопользования': parse_geogr,
         'Институт геологии и нефтегазовых технологий': None,
         'Институт математики и механики им. Н.И. Лобачевского': None,
-        'Институт физики': None,
-        'Химический институт им. А.М. Бутлерова': None,
-        'Юридический факультет': None,
+        'Институт физики': parse_phys,
+        'Химический институт им. А.М. Бутлерова': parse_chem,
+        'Юридический факультет': parse_law,
         'Институт вычислительной математики и информационных технологий': parse_ivmiit,
         'Институт филологии и межкультурной коммуникации': None,
         'Институт психологии и образования': None,
@@ -28,7 +29,7 @@ def main():
         'Институт фундаментальной медицины и биологии': None,
         'Инженерный институт': parse_engineer,
         'Институт международных отношений': None,
-        'Высшая школа бизнеса':parse_higher_school_buisness,
+        'Высшая школа бизнеса': parse_higher_school_buisness,
         'Институт социально-философских наук и массовых коммуникаций': None,
         'Институт управления, экономики и финансов': None,
         'Высшая школа государственного и муниципального управления': None,
